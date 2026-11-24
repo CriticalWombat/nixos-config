@@ -13,6 +13,7 @@
       ./modules/users.nix
       ./modules/dev.nix
       ./modules/networking.nix
+      ./modules/custom-hardware.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
