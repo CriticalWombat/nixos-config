@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ef95cbe3-9234-42e0-bed4-486f36d11561" name="Changes" comment="Add secondary hard drive">
+      <change beforePath="$PROJECT_DIR$/configuration.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware-configuration.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/cli-apps.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/custom-hardware.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/desktop-apps.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/dev.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/networking.nix" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/users.nix" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/hyprland/hyprland.lua" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0016869601628635" />
+      <entry key="MS500" value="1.5642931272438014" />
+      <entry key="S2" value="4.151265103903302" />
+      <entry key="S5" value="7.851245478260175" />
+      <entry key="S10" value="11.653910719786678" />
+      <entry key="S30" value="17.250737992302422" />
+      <entry key="S60" value="20.638494702597715" />
+      <entry key="M2" value="24.442340406737177" />
+      <entry key="M5" value="34.953971388522916" />
+      <entry key="M10" value="66.45123319155529" />
+      <entry key="M15" value="108.79681984648005" />
+      <entry key="M30" value="230.76448199287316" />
+      <entry key="H1" value="382.56082957209236" />
+      <entry key="H2" value="531.4823081279951" />
+      <entry key="H4" value="660.9457420422146" />
+      <entry key="D1" value="836.4948471982003" />
+      <entry key="W1" value="876.8845695643683" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="1.5413497421395416E-192" />
+      <entry key="S5" value="1.8861167361348643E-77" />
+      <entry key="S10" value="4.491194153552007E-39" />
+      <entry key="S30" value="2.487160807886446E-13" />
+      <entry key="S60" value="8.883222689955749E-7" />
+      <entry key="M2" value="0.001886162203108531" />
+      <entry key="M5" value="0.21160255912458975" />
+      <entry key="M10" value="1.1502365316096876" />
+      <entry key="M15" value="2.1133286066087464" />
+      <entry key="M30" value="4.022361321989718" />
+      <entry key="H1" value="5.6388118889781955" />
+      <entry key="H2" value="6.706053052707752" />
+      <entry key="H4" value="7.321635090531002" />
+      <entry key="D1" value="7.882291245732495" />
+      <entry key="W1" value="7.983066668304973" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.42793550756792564" />
+      <entry key="MS500" value="1.4032755157579317" />
+      <entry key="S2" value="4.1039736062273535" />
+      <entry key="S5" value="7.8297790711592405" />
+      <entry key="S10" value="11.640663618235575" />
+      <entry key="S30" value="17.233120320593937" />
+      <entry key="S60" value="20.620889687922713" />
+      <entry key="M2" value="24.431255472536893" />
+      <entry key="M5" value="35.15598545791319" />
+      <entry key="M10" value="67.58879576687926" />
+      <entry key="M15" value="110.89564920846145" />
+      <entry key="M30" value="234.77266047946298" />
+      <entry key="H1" value="388.1891525650028" />
+      <entry key="H2" value="538.1818605537566" />
+      <entry key="H4" value="668.2637265896475" />
+      <entry key="D1" value="844.3764624492735" />
+      <entry key="W1" value="884.8675377872989" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3MZF08eQsfetRm9aJ7uocbjX48J" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/luke/nixos-config&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-34611be1ca5a-e0583fc556d1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-263.7307.206" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef95cbe3-9234-42e0-bed4-486f36d11561" name="Changes" comment="" />
+      <created>1795549957931</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1795549957931</updated>
+      <workItem from="1795549960157" duration="3265000" />
+      <workItem from="1795555920862" duration="45000" />
+      <workItem from="1795564764881" duration="6760000" />
+      <workItem from="1795620164968" duration="1159000" />
+      <workItem from="1795624853619" duration="36000" />
+      <workItem from="1795625012422" duration="133000" />
+      <workItem from="1795625820940" duration="2785000" />
+      <workItem from="1795629227389" duration="718000" />
+      <workItem from="1795629966415" duration="26000" />
+      <workItem from="1795630002487" duration="512000" />
+      <workItem from="1795631292589" duration="1464000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add secondary hard drive">
+      <option name="closed" value="true" />
+      <created>1795551300045</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1795551300045</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add secondary hard drive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add secondary hard drive" />
+  </component>
+</project>

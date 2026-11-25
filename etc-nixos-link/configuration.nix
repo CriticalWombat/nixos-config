@@ -14,6 +14,7 @@
       ./modules/dev.nix
       ./modules/networking.nix
       ./modules/custom-hardware.nix
+      ./modules/hyprland.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
