@@ -21,6 +21,7 @@
     pkgs.dunst
     pkgs.libnotify
     pkgs.swaybg
+    pkgs.rofi
   ];
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];

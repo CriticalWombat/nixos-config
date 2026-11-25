@@ -25,4 +25,16 @@
       IdentityFile ~/.ssh/gh_auth.key
       IdentitiesOnly yes
   '';  
+
+# Install Docker
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+      allVolumes.enable = true;
+    };
+  };
+
 }
