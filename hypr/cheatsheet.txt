@@ -1,0 +1,38 @@
+-- GENERAL --
+SUPER + Q              Open terminal
+SUPER + E              File manager
+SUPER + A              App launcher
+SUPER + H              This cheat sheet
+SUPER + L              Lock screen
+SUPER + M              Shutdown / exit session
+SUPER + R              Reload Hyprland config
+
+-- WINDOWS --
+SUPER + C              Close window
+SUPER + V              Toggle floating
+SUPER + F              Toggle fullscreen
+SUPER + P              Pseudo-tile
+SUPER + J              Cycle layout
+SUPER + Arrows         Move focus
+SUPER + LMB drag       Move window
+SUPER + RMB drag       Resize window
+
+-- MULTITASKING --
+SUPER + Tab            Workspace overview
+SUPER + `              Toggle scratchpad terminal
+SUPER + S              Toggle scratchpad workspace
+SUPER + Shift + S      Move window to scratchpad
+SUPER + Shift + V      Clipboard history picker
+3-finger swipe L/R     Switch workspace
+3-finger swipe up      Fullscreen
+3-finger swipe down    Unfullscreen
+
+-- WORKSPACES --
+SUPER + 0-9            Switch to workspace
+SUPER + Shift + 0-9    Move window to workspace
+SUPER + Scroll         Switch workspace
+
+-- SCREENSHOTS --
+Print                  Screenshot (full output)
+Shift + Print          Screenshot (region)
+SUPER + Print          Screenshot (active window)

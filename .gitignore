@@ -4,3 +4,5 @@ result-*
 *.swp
 *~
 .idea
+*.hm-backup
+/hypr/plugins/

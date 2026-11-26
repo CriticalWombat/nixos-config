@@ -5,5 +5,7 @@
         vim
         wget
         kitty
+        wev
+        claude-code
     ];
 }

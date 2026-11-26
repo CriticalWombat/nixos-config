@@ -1,0 +1,64 @@
+* {
+    bg0: #1e1e2eee;
+    bg1: #313244;
+    fg0: #cdd6f4;
+    accent: #cba6f7;
+
+    font: "JetBrainsMono Nerd Font 11";
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+window {
+    background-color: @bg0;
+    location: east;
+    anchor: east;
+    width: 560px;
+    height: 100%;
+    border: 0px 0px 0px 2px;
+    border-color: @accent;
+    border-radius: 0px;
+    padding: 28px 20px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 14px;
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius: 10px;
+    padding: 8px 10px;
+    children: [ entry ];
+}
+
+entry {
+    placeholder: "Filter...";
+    font: "JetBrainsMono Nerd Font 11";
+}
+
+listview {
+    spacing: 3px;
+    scrollbar: true;
+    lines: 32;
+}
+
+element {
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+element-text {
+    font: "JetBrainsMono Nerd Font 11";
+    vertical-align: 0.5;
+}
+
+element selected {
+    background-color: rgba(203, 166, 247, 30%);
+    text-color: @fg0;
+}
+
+element-text selected {
+    text-color: @fg0;
+}

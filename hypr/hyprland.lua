@@ -1,13 +1,7 @@
--- This is an example Hyprland Lua config file.
--- Refer to the wiki for more information.
--- https://wiki.hypr.land/Configuring/Start/
-
--- Please note not all available settings / options are set here.false
--- For a full list, see the wiki
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
+-- Luke's Hyprland config. See ../README.md for the full setup/architecture
+-- rundown and ../hypr/cheatsheet.txt for the keybind reference (also
+-- SUPER + H, live, right in the session).
+-- Hyprland Lua config reference: https://wiki.hypr.land/Configuring/Start/
 
 
 ------------------
@@ -30,7 +24,8 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local menu        = "rofi -show drun -show-icons -theme /home/luke/nixos-config/rofi/config.rasi"
+local scratchTerm = "kitty --class scratchterm"
 
 
 -------------------
@@ -45,7 +40,13 @@ local menu        = "hyprlauncher"
  hl.on("hyprland.start", function ()
    hl.exec_cmd("dunst")
    hl.exec_cmd("nm-applet --indicator")
-   hl.exec_cmd("waybar")
+   -- waybar is started by its home-manager systemd user service, not here.
+   hl.exec_cmd("wl-paste --watch cliphist store")
+   -- Pre-spawn the scratchpad terminal, hidden, so toggling it is instant.
+   hl.exec_cmd("hyprctl dispatch exec '[workspace special:scratchterm silent] " .. scratchTerm .. "'")
+   -- hl.plugin.load() as a bare top-level call doesn't reliably take on
+   -- this build; `hyprctl plugin load` does, so use that instead.
+   hl.exec_cmd("hyprctl plugin load /home/luke/.config/hypr/plugins/hyprspace.so")
 end)
 
 
@@ -78,6 +79,40 @@ hl.env("HYPRCURSOR_SIZE", "12")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
 
+-----------------
+---- PLUGINS ----
+-----------------
+
+-- The plugin itself is loaded via `hyprctl plugin load` in the AUTOSTART
+-- block above -- a bare top-level hl.plugin.load() call here was found
+-- not to reliably take on this Hyprland build (silently no-ops on
+-- reload), so the config here only sets its options.
+-- modules/home/hyprland.nix keeps /home/luke/.config/hypr/plugins/hyprspace.so
+-- pointed at the current build (the store path changes on every update).
+
+-- Click a window thumbnail and drag it onto another workspace's panel to
+-- move it there (switchOnDrop follows you to that workspace). Plain click
+-- without dragging just switches/focuses and exits (exitOnClick). Note:
+-- Hyprspace has no built-in "fullscreen from the overview" interaction --
+-- after switching to a window this way, SUPER+F fullscreens it as usual.
+hl.config({
+    plugin = {
+        overview = {
+            panelHeight          = 200,
+            hideTopLayers        = false,
+            hideBackgroundLayers = false,
+            drawActiveWorkspace  = true,
+            centerAligned        = true,
+            exitOnClick          = true,
+            switchOnDrop         = true,
+            -- Stay open after a drag-drop move so you can reorganize
+            -- several windows across workspaces in one overview session.
+            exitOnSwitch         = false,
+        },
+    },
+})
+
+
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
@@ -91,8 +126,9 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            -- Catppuccin Mocha: mauve -> pink
+            active_border   = { colors = {"rgba(cba6f7ee)", "rgba(f5c2e7ee)"}, angle = 45 },
+            inactive_border = "rgba(45475aaa)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -160,30 +196,7 @@ hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "
 hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
-
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
-hl.config({
-    dwindle = {
-        preserve_split = true, -- You probably want this
-    },
-})
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 hl.config({
@@ -192,12 +205,6 @@ hl.config({
     },
 })
 
--- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-hl.config({
-    scrolling = {
-        fullscreen_on_one_column = true,
-    },
-})
 
 ----------------
 ----  MISC  ----
@@ -239,12 +246,24 @@ hl.gesture({
     action = "workspace"
 })
 
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
+hl.gesture({
+    fingers = 3,
+    direction = "up",
+    action = function()
+        hl.dispatch(hl.dsp.window.fullscreen({ mode = "fullscreen", action = "set" }))
+    end
 })
+hl.gesture({
+    fingers = 3,
+    direction = "down",
+    action = function()
+        hl.dispatch(hl.dsp.window.fullscreen({ mode = "fullscreen", action = "unset" }))
+    end
+})
+
+-- Per-device overrides (e.g. mouse sensitivity) go here via hl.device(),
+-- see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ --
+-- none needed currently.
 
 
 ---------------------
@@ -263,8 +282,28 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("rollnext"))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("rofi -show drun -show-icons"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+
+-- Seamless multitasking: workspace overview and a dropdown scratchpad terminal
+hl.bind(mainMod .. " + TAB", function()
+    hl.plugin.overview.toggle()
+end)
+hl.bind(mainMod .. " + GRAVE", hl.dsp.workspace.toggle_special("scratchterm"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+
+-- Keybind cheat-sheet (hypr/cheatsheet.txt -- update it by hand when binds change)
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd(
+    "sh -c 'cat /home/luke/nixos-config/hypr/cheatsheet.txt | rofi -dmenu -i -p Shortcuts -theme /home/luke/nixos-config/rofi/cheatsheet.rasi'"
+))
+
+-- Screenshots (hyprshot wraps grim+slurp and copies to clipboard + saves to disk)
+hl.bind("Print",                      hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind("SHIFT + Print",              hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(mainMod .. " + Print",        hl.dsp.exec_cmd("hyprshot -m window"))
+
+-- Clipboard history (cliphist, fed by the wl-paste watcher started on autostart)
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("sh -c 'cliphist list | rofi -dmenu | cliphist decode | wl-copy'"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -356,3 +395,19 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- Dropdown-style scratchpad terminal (toggled with mainMod + GRAVE)
+hl.window_rule({
+    name  = "scratchpad-terminal",
+    match = { class = "scratchterm" },
+
+    float    = true,
+    -- size/move take {expr, expr} vectors (monitor_w/monitor_h are the
+    -- available variables), not "NN%"-style strings -- that silently
+    -- no-ops under the Lua config.
+    size     = { "monitor_w * 0.70", "monitor_h * 0.60" },
+    move     = { "monitor_w * 0.15", "monitor_h * 0.05" },
+    pin      = true,
+    rounding = true,
+})
+
